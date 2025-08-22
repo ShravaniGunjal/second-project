@@ -6,25 +6,34 @@ import { useState } from 'react';
 
 
 function App() {
-  const [name, setName] = useState();
-  const [showBlock, setShowBlock] = useState(false);
-  // const [image, setImage] = useState();
+  const[number1, setNumber1] = useState();
+  const[number2, setNumber2] = useState();
+  const[addition, setAddition] = useState();
+  const[subtraction, setSubtraction] = useState();
+  const[multiplication, setMultiplication] = useState();
+  const[division, setDivision] = useState();
 
-  function handleNameChange(event) {
-    setName(event.target.value)
+  function handleNumber1Change(event) {
+    setNumber1(parseInt(event.target.value))
   }
-  function OnSubmitClick() {
-    setShowBlock(true)
+  function handleNumber2Change(event) {
+    setNumber2(parseInt(event.target.value))
+  }
+  function onSubmit(){
+    setAddition(number1+number2);
+    setSubtraction(number1-number2);
+    setMultiplication(number1*number2);
+    setDivision(number1/number2)
   }
   return (
     <div>
-      <div><input name="text" value={name} onChange={handleNameChange} /></div>
-      {/* <div>{name}</div> */}
-      <button onClick={OnSubmitClick}>Submit</button>
-     {showBlock ? <div>
-        <div>{name}</div>
-        <img src='https://4.imimg.com/data4/MM/YO/MY-9960839/flower-gardens.jpg' width='200px' />
-      </div>:<h1>Click on submit button</h1>}
+      <div><input name='number' value={number1} placeholder='Enter First Number' onChange={handleNumber1Change}/></div>
+      <input name='number' value={number2} placeholder='Enter Second Number' onChange={handleNumber2Change}/>
+      <div><button onClick={onSubmit}>Submit</button></div>
+      {addition &&<h1>Addition of {number1} and {number2} is : {addition}</h1>}
+      {subtraction &&<h1>Subtraction of {number1} and {number2} is : {subtraction}</h1>}
+      {multiplication &&<h1>Multiplication of {number1} and {number2} is : {multiplication}</h1>}
+      {division &&<h1>Division of {number1} and {number2} is : {division}</h1>}
     </div>
   );
 
